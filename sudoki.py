@@ -66,8 +66,41 @@ def valid(board, pos, num):
 
     for i in range(box_y * 3, box_y * 3 + 3):
         for j in range(box_x * 3, box_x * 3 + 3):
-            if bo[i][j] == num and (i, j) != pos:
+            if board[i][j] == num and (i, j) != pos:
                 return False
 
     return True
 
+def print_board(board):
+    """
+    prints the board
+    :param board: 2d List of ints
+    :return: None
+    """
+    for i in range(len(board)):
+        if i % 3 == 0 and i != 0:
+            print("- - - - - - - - - - - - - -")
+        for j in range(len(board[0])):
+            if j % 3 == 0:
+                print(" | ", end = "")
+
+            if j == 8:
+                print(board[i][j], end="\n")
+            else:
+                print(str(board[i][j]) + " ", end="")
+
+board = [
+        [7, 8, 0, 4, 0, 0, 1, 2, 0],
+        [6, 0, 0, 0, 7, 5, 0, 0, 9],
+        [0, 0, 0, 6, 0, 1, 0, 7, 8],
+        [0, 0, 7, 0, 4, 0, 2, 6, 0],
+        [0, 0, 1, 0, 5, 0, 9, 3, 0],
+        [9, 0, 4, 0, 6, 0, 0, 0, 5],
+        [0, 7, 0, 3, 0, 0, 0, 1, 2],
+        [1, 2, 0, 0, 0, 7, 4, 0, 0],
+        [0, 4, 9, 2, 0, 6, 0, 0, 7],
+    ]
+
+pp = pprint.PrettyPrinter(width=41, compact=True)
+solve(board)
+pp.pprint(board)
