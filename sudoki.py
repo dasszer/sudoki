@@ -2,6 +2,30 @@ import pprint
 
 # sudoki.py : solves a sudoku board by a backtracking method
 
+def solve(board):
+    """
+    Solves a sudoku board using backtracking
+    :param board: 2d list of ints
+    :return: solution
+    """
+    find = find_empty(board)
+    if find:
+        row, col = find
+    else:
+        return True
+
+    for i in range(1, 10):
+        if valid(board, (row, col), i):
+            board[row][col] = i
+
+            if solve(board):
+                return True
+
+            board[row][col] = 0
+
+    return False
+
+
 def find_empty(board):
     """
     finds an empty space in the board
@@ -46,3 +70,4 @@ def valid(board, pos, num):
                 return False
 
     return True
+
